@@ -44,7 +44,7 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
       APP_KEYS: ${APP_KEYS}
-      STRAPI_TELEMETRY_DISABLED: true
+      STRAPI_TELEMETRY_DISABLED: 1
     volumes:
       - ./strapi/config:/opt/app/config
       - ./strapi/src:/opt/app/src
