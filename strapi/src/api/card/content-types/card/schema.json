@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cards",
+  "info": {
+    "singularName": "card",
+    "pluralName": "cards",
+    "displayName": "Card",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 1
+    },
+    "slug": {
+      "type": "customField",
+      "customField": "plugin::field-uuid.uuid",
+      "required": true
+    },
+    "class": {
+      "type": "enumeration",
+      "enum": [
+        "English to Finnish",
+        "Finnish to English"
+      ],
+      "required": true,
+      "default": "Finnish to English"
+    },
+    "questions": {
+      "displayName": "question",
+      "type": "component",
+      "repeatable": true,
+      "component": "question.question",
+      "required": true
+    },
+    "reversable": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

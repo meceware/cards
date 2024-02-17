@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_question_questions",
+  "info": {
+    "displayName": "question",
+    "icon": "question",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "text",
+      "required": true,
+      "minLength": 1
+    },
+    "answer": {
+      "type": "text",
+      "required": true,
+      "minLength": 1
+    }
+  }
+}

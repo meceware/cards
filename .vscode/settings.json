@@ -1,0 +1,7 @@
+{
+  "files.exclude": {
+    "app/.next": true,
+    "app/package-lock.json": true,
+    "db": true,
+  }
+}

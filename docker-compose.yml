@@ -1,0 +1,73 @@
+version: "3.8"
+services:
+  cards:
+    image: cards:latest
+    container_name: cards
+    build:
+      context: ./app
+      target: production
+      dockerfile: Dockerfile
+    working_dir: /app
+    restart: unless-stopped
+    tty: true
+    env_file: .env
+    environment:
+      TZ: Europe/Helsinki
+      APP_NAME: ${APP_NAME}
+      APP_DESCRIPTION: ${APP_DESCRIPTION}
+      APP_KEYWORDS: ${APP_KEYWORDS}
+      APP_URL: ${APP_URL}
+      STRAPI_API_URL: ${STRAPI_API_URL}
+      STRAPI_API_TOKEN: ${STRAPI_API_TOKEN}
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+
+  strapi:
+    image: strapi:latest
+    container_name: strapi
+    build:
+      context: ./strapi
+      target: production
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: strapi_db
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      APP_KEYS: ${APP_KEYS}
+      STRAPI_TELEMETRY_DISABLED: true
+    volumes:
+      - ./strapi/config:/opt/app/config
+      - ./strapi/src:/opt/app/src
+      - ./strapi/package.json:/opt/package.json
+      - ./strapi/yarn.lock:/opt/yarn.lock
+      - ./.env:/opt/app/.env
+      - ./strapi/public:/opt/app/public
+    ports:
+      - 1337:1337
+    depends_on:
+      - strapi_db
+
+  strapi_db:
+    image: postgres:alpine
+    container_name: strapi_db
+    # platform: linux/amd64
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - ./db:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
