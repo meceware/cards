@@ -14,14 +14,7 @@ I wanted a small flip cards platform that I can enter my own data and learn new 
 
 ```bash
 # Up
-docker-compose -p cards up -d
+docker compose -p cards up -d
 ```
 
-- Go to Strapi and generate your API token. Put it into `.env` file and re-create docker containers.
-
-```bash
-#down
-docker-compose -p cards down
-#up
-docker-compose -p cards up -d
-```
+- Go to Strapi and generate your API token. Put it into `.env` file and restart docker containers.
