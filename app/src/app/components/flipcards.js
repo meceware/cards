@@ -16,7 +16,7 @@ const Entry = ( { front, back, flip, outro, onFlip, onCorrect, onWrong, classNam
   const isHidden = outro || ! flip;
 
   return (
-    <div className={ cn( 'flex flex-row justify-center gap-2 md:gap-8 min-w-2/3 max-w-full', className ) } { ...props }>
+    <div className={ cn( 'flex flex-row justify-center gap-2 md:gap-8 min-w-p66 max-w-full', className ) } { ...props }>
       <div className={ cn( 'grow-0 self-center transition-all duration-500 ease-in-out', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
         <button className='bg-destructive text-destructive-foreground hover:bg-destructive/70 rounded-xl p-4 transition-colors duration-500' onClick={ onWrong } >
           <Icons.wrong className='size-6' />
