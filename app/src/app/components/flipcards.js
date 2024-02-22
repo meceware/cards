@@ -16,7 +16,7 @@ const Entry = ( { front, back, flip, outro, onFlip, onCorrect, onWrong, classNam
   const isHidden = outro || ! flip;
 
   return (
-    <div className={ cn( 'flex w-full flex-row justify-center gap-2 md:w-2/3 md:gap-8', className ) } { ...props }>
+    <div className={ cn( 'flex flex-row justify-center gap-2 md:gap-8 min-w-2/3 max-w-full', className ) } { ...props }>
       <div className={ cn( 'grow-0 self-center transition-all duration-500 ease-in-out', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
         <button className='bg-destructive text-destructive-foreground hover:bg-destructive/70 rounded-xl p-4 transition-colors duration-500' onClick={ onWrong } >
           <Icons.wrong className='size-6' />
@@ -33,7 +33,7 @@ const Entry = ( { front, back, flip, outro, onFlip, onCorrect, onWrong, classNam
             </FlipCard.Back>
           </FlipCard.Root>
         </div>
-        <div className={ cn( 'text-card-foreground bg-secondary mx-4 select-none whitespace-pre rounded-xl border-4 border-sky-500 p-2 text-xs leading-loose transition-all duration-500', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
+        <div className={ cn( 'text-card-foreground bg-secondary mx-4 select-none whitespace-pre-wrap rounded-xl border-4 border-sky-500 p-2 text-xs leading-loose transition-all duration-500', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
           <span className={ cn( 'transition-opacity duration-200', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && ! flip } ) }>{ front }</span>
         </div>
       </div>

@@ -17,7 +17,7 @@ const Root = ( { flip, className, children, ...props } ) => {
 
 const Front = ( { className, children, ...props } ) => {
   return (
-    <div className={ cn( 'flex min-h-full min-w-full select-none flex-col items-center justify-center whitespace-pre [backface-visibility:hidden]', className ) } { ...props }>
+    <div className={ cn( 'flex min-h-full min-w-full select-none flex-col items-center justify-center leading-normal whitespace-pre-wrap [backface-visibility:hidden]', className ) } { ...props }>
       { children }
     </div>
   );
@@ -25,7 +25,7 @@ const Front = ( { className, children, ...props } ) => {
 
 const Back = ( { className, children, ...props } ) => {
   return (
-    <div className={ cn( 'flex min-h-full min-w-full select-none flex-col items-center justify-center whitespace-pre [backface-visibility:hidden] [transform:rotateY(180deg)_translate(100%,0)]', className ) } { ...props }>
+    <div className={ cn( 'flex min-h-full min-w-full select-none flex-col items-center justify-center leading-normal whitespace-pre-wrap [backface-visibility:hidden] [transform:rotateY(180deg)_translate(100%,0)]', className ) } { ...props }>
       { children }
     </div>
   );
