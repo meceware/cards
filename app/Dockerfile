@@ -13,7 +13,6 @@ FROM base AS production
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV HOSTNAME "0.0.0.0"
 ENV PORT 3000
-ENV NODE_ENV production
 WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
 
