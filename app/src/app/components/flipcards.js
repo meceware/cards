@@ -135,7 +135,7 @@ const FlipCards = ( { attr, meta } ) => {
         />
       ) : (
         <div className='flex w-full flex-col items-center gap-8'>
-          <h2 className='text-2xl'>Your Score: <span className='text-green-500'>{ 100 * correct.size / questions.length }%</span></h2>
+          <h2 className='text-2xl'>Your Score: <span className='text-green-500'>{ (100 * correct.size / questions.length).toFixed(1) }%</span></h2>
           <button className='bg-secondary hover:bg-secondary/70 inline-flex items-center gap-2 rounded-md border p-4 text-base font-semibold' onClick={ reset } >
             <Icons.reset className='size-4' />Reset
           </button>
