@@ -16,9 +16,9 @@ const StrapiFetch = async( filter ) => {
       Authorization: `Bearer ${ process.env.STRAPI_API_TOKEN }`,
       'Content-type': 'application/json',
     },
-  }, {
     next: {
-      revalidate: 3600,
+      cache: 'no-store',
+      revalidate: 0,
     },
   } ).then( checkStatus ).then( parseJSON );
 
