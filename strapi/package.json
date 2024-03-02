@@ -9,17 +9,17 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
     "@bn-digital/strapi-plugin-field-uuid": "^1.2.12",
-    "@strapi/plugin-i18n": "4.20.1",
-    "@strapi/plugin-users-permissions": "4.20.1",
-    "@strapi/provider-email-nodemailer": "4.20.1",
-    "@strapi/strapi": "4.20.1",
+    "@strapi/plugin-i18n": "4.20.3",
+    "@strapi/plugin-users-permissions": "4.20.3",
+    "@strapi/provider-email-nodemailer": "4.20.3",
+    "@strapi/strapi": "4.20.3",
     "pg": "8.11.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "5.3.4",
+    "strapi-plugin-import-export-entries": "^1.23.1",
     "styled-components": "5.3.3"
   },
   "author": {
