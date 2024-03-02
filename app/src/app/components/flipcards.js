@@ -12,36 +12,46 @@ import { TableEntry } from '@/app/components/table-entry';
 import { Separator } from '@/components/ui/separator';
 import { HeaderInner } from '@/app/components/header-inner';
 
-const Entry = ( { front, back, flip, outro, onFlip, onCorrect, onWrong, className, ...props } ) => {
+const Entry = ( { front, back, hint, flip, outro, onFlip, onCorrect, onWrong, className, ...props } ) => {
   const isHidden = outro || ! flip;
 
   return (
-    <div className={ cn( 'flex flex-row justify-center gap-2 md:gap-8 min-w-p66 max-w-full', className ) } { ...props }>
-      <div className={ cn( 'grow-0 self-center transition-all duration-500 ease-in-out', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
-        <button className='bg-destructive text-destructive-foreground hover:bg-destructive/70 rounded-xl p-4 transition-colors duration-500' onClick={ onWrong } >
-          <Icons.wrong className='size-6' />
-        </button>
-      </div>
-      <div className='flex grow flex-col items-stretch gap-4'>
-        <div className='grow'>
-          <FlipCard.Root flip={ flip } onClick={ onFlip } className='min-h-72 w-full cursor-pointer text-2xl leading-loose'>
+    <div className='sm:min-w-p66 min-w-full max-w-full space-y-4'>
+      <div className={ cn( 'flex w-full flex-row justify-center gap-2 md:gap-8', className ) } { ...props }>
+        <div className={ cn( 'grow-0 self-center transition-all duration-500 ease-in-out', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
+          <button className='bg-destructive text-destructive-foreground hover:bg-destructive/70 rounded-xl px-1 py-4 transition-colors duration-500 sm:px-4' onClick={ onWrong } >
+            <Icons.wrong className='size-6' />
+          </button>
+        </div>
+        <div className='flex grow flex-col items-stretch gap-4'>
+          <FlipCard.Root flip={ flip } onClick={ onFlip } className='min-h-72 w-full cursor-pointer text-xl leading-tight sm:text-2xl md:leading-normal'>
             <FlipCard.Front className='text-card-foreground bg-secondary rounded-xl border-4 border-sky-500 p-6 '>
               <span className={ cn( 'transition-opacity duration-200', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && ! flip } ) }>{ front }</span>
             </FlipCard.Front>
             <FlipCard.Back className='text-card-foreground bg-secondary rounded-xl border-4 border-orange-500 p-6'>
               <span className={ cn( 'transition-opacity duration-200', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && flip } ) }>{ back }</span>
+              <span className={ cn( 'mt-2 hidden rounded-xl border border-lime-500 p-2 text-sm transition-opacity duration-200 md:block', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && flip } ) }>{ hint }</span>
             </FlipCard.Back>
           </FlipCard.Root>
         </div>
-        <div className={ cn( 'text-card-foreground bg-secondary mx-4 select-none whitespace-pre-wrap rounded-xl border-4 border-sky-500 p-2 text-xs leading-loose transition-all duration-500', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
+        <div className={ cn( 'grow-0 self-center transition-all duration-500 ease-in-out', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
+          <button className='bg-green text-green-foreground hover:bg-green/70 rounded-xl px-1 py-4 transition-colors duration-500 sm:px-4' onClick={ onCorrect } >
+            <Icons.check className='size-6' />
+          </button>
+        </div>
+      </div>
+      <div className='flex justify-center px-4'>
+        <div className={ cn( 'text-card-foreground bg-secondary mx-4 min-w-60 select-none whitespace-pre-wrap rounded-xl border-4 border-sky-500 p-2 text-xs leading-normal shadow-xl transition-all duration-500', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
           <span className={ cn( 'transition-opacity duration-200', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && ! flip } ) }>{ front }</span>
         </div>
       </div>
-      <div className={ cn( 'grow-0 self-center transition-all duration-500 ease-in-out', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
-        <button className='bg-green text-green-foreground hover:bg-green/70 rounded-xl p-4 transition-colors duration-500' onClick={ onCorrect } >
-          <Icons.check className='size-6' />
-        </button>
-      </div>
+      { hint && (
+        <div className='flex justify-center px-4 md:hidden'>
+          <div className={ cn( 'text-card-foreground bg-secondary mx-4 min-w-60 select-none whitespace-pre-wrap rounded-xl border-4 border-lime-500 p-2 text-xs leading-normal shadow-xl transition-all duration-500', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
+            <span className={ cn( 'transition-opacity duration-200', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && ! flip } ) }>{ hint }</span>
+          </div>
+        </div>
+      ) }
     </div>
   );
 };
@@ -127,6 +137,7 @@ const FlipCards = ( { attr, meta } ) => {
         <Entry
           front={ getQuestion().question }
           back={ getQuestion().answer }
+          hint={ getQuestion()?.hint }
           flip={ flipped }
           outro={ changing }
           onFlip={ () => toggleFlipped() }
@@ -135,7 +146,7 @@ const FlipCards = ( { attr, meta } ) => {
         />
       ) : (
         <div className='flex w-full flex-col items-center gap-8'>
-          <h2 className='text-2xl'>Your Score: <span className='text-green-500'>{ (100 * correct.size / questions.length).toFixed(1) }%</span></h2>
+          <h2 className='text-2xl'>Your Score: <span className='text-green-500'>{ ( 100 * correct.size / questions.length ).toFixed( 1 ) }%</span></h2>
           <button className='bg-secondary hover:bg-secondary/70 inline-flex items-center gap-2 rounded-md border p-4 text-base font-semibold' onClick={ reset } >
             <Icons.reset className='size-4' />Reset
           </button>

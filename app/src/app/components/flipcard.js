@@ -4,20 +4,15 @@ import { cn } from '@/lib/utils';
 
 const Root = ( { flip, className, children, ...props } ) => {
   return (
-    <div className={ cn( 'grid [perspective:40rem]', className ) } { ...props }>
-      <div className={ cn(
-        'flex shadow-lg transition-transform duration-500 [transform-style:preserve-3d]',
-        { '[transform:rotateY(180deg)]': flip },
-      ) }>
-        { children }
-      </div>
+    <div className={ cn( 'grid shrink [perspective:40rem] [transform-style:preserve-3d]', className ) } style={ { '--flipped': flip ? 1 : 0 } } { ...props }>
+      { children }
     </div>
   );
 };
 
 const Front = ( { className, children, ...props } ) => {
   return (
-    <div className={ cn( 'flex min-h-full min-w-full select-none flex-col items-center justify-center leading-normal whitespace-pre-wrap [backface-visibility:hidden]', className ) } { ...props }>
+    <div className={ cn( 'z-20 flex min-h-full select-none flex-col items-center justify-center whitespace-pre-wrap shadow-xl transition-transform duration-500 [backface-visibility:hidden] [grid-area:1/-1/1/-1] [transform:rotateY(calc(180deg*var(--flipped)))]', className ) } { ...props }>
       { children }
     </div>
   );
@@ -25,7 +20,7 @@ const Front = ( { className, children, ...props } ) => {
 
 const Back = ( { className, children, ...props } ) => {
   return (
-    <div className={ cn( 'flex min-h-full min-w-full select-none flex-col items-center justify-center leading-normal whitespace-pre-wrap [backface-visibility:hidden] [transform:rotateY(180deg)_translate(100%,0)]', className ) } { ...props }>
+    <div className={ cn( 'z-10 flex min-h-full select-none flex-col items-center justify-center whitespace-pre-wrap shadow-xl transition-transform duration-500 [backface-visibility:hidden] [grid-area:1/-1/1/-1] [transform:rotateY(calc(180deg*var(--flipped)-180deg))]', className ) } { ...props }>
       { children }
     </div>
   );
