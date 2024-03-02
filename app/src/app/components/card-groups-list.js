@@ -11,25 +11,25 @@ const CardGroup = ( { item } ) => {
   return (
     <div className='text-card-foreground bg-secondary rounded-lg border p-4 shadow-sm'>
       <div className='flex flex-row items-center justify-between'>
-        <div className='flex flex-col items-start space-y-2'>
+        <div className='flex flex-col items-start gap-2'>
           <Link href={ `/cards/${ item.attributes.slug }` } title='Flashcards'>
-            <h3 className='line-clamp-1 text-lg font-semibold leading-none tracking-tight'>{ item.attributes.title }</h3>
+            <h3 className='line-clamp-2 text-left text-lg font-semibold leading-none tracking-tight sm:line-clamp-1'>{ item.attributes.title }</h3>
           </Link>
-          <div className='flex flex-row space-x-2'>
+          <div className='flex flex-col gap-2 sm:flex-row'>
             <div className='bg-primary hover:bg-primary/80 text-primary-foreground line-clamp-1 rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold'>{ item.attributes.class }</div>
             <div className='bg-primary hover:bg-primary/80 text-primary-foreground line-clamp-1 rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold'>{ item.attributes.questions.length } questions</div>
           </div>
         </div>
-        <div className='ml-2 space-x-2 border-l pl-2'>
-          <Link href={ `/cards/${ item.attributes.slug }` } title='Flashcards' className='hover:bg-accent hover:text-accent-foreground inline-flex rounded-md p-2 transition-colors'>
+        <div className='ml-2 flex flex-col gap-1 border-l pl-2 sm:flex-row'>
+          <Link href={ `/cards/${ item.attributes.slug }` } title='Flashcards' className='hover:bg-accent-foreground/10 hover:text-accent-foreground inline-flex rounded-md p-2 transition-colors'>
             <Icons.cards className='size-4' />
           </Link>
           { item.attributes.reversable !== false && (
-            <Link href={ `/cards/reverse/${ item.attributes.slug }` } title='Reverse Flashcards' className='hover:bg-accent hover:text-accent-foreground inline-flex rounded-md p-2 transition-colors [transform:rotateY(180deg)]'>
+            <Link href={ `/cards/reverse/${ item.attributes.slug }` } title='Reverse Flashcards' className='hover:bg-accent-foreground/10 hover:text-accent-foreground inline-flex rounded-md p-2 transition-colors [transform:rotateY(180deg)]'>
               <Icons.cards className='size-4' />
             </Link>
           ) }
-          <Link href={ `/list/${ item.attributes.slug }` } title='List' className='hover:bg-accent hover:text-accent-foreground inline-flex rounded-md p-2 transition-colors'>
+          <Link href={ `/list/${ item.attributes.slug }` } title='List' className='hover:bg-accent-foreground/10 hover:text-accent-foreground inline-flex rounded-md p-2 transition-colors'>
             <Icons.list className='size-4' />
           </Link>
         </div>
@@ -68,7 +68,7 @@ const CardGroupsList = ( { groups } ) => {
   }, [ filter, groups?.data ] );
 
   return (
-    <div className='flex w-full flex-col space-y-8'>
+    <div className='flex w-full flex-col gap-4'>
       <SearchBar value={ search } onChangeHandler={ onSearchChange } />
       { filteredData.length > 0
         ? filteredData.map( ( item, id ) => (

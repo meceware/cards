@@ -38,7 +38,7 @@ const QuestionsList = ( { attr, meta } ) => {
   }, [ filter, questions ] );
 
   return (
-    <div className='flex w-full flex-col space-y-4'>
+    <div className='flex w-full flex-col gap-4'>
       <HeaderInner title={ attr.title } slug={ attr.slug } reversable={ attr.reversable } />
       <SearchBar value={ search } onChangeHandler={ onSearchChange } />
       { filteredData.length > 0 ? (

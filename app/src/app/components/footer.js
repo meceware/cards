@@ -9,7 +9,7 @@ export default function Footer( { author, github } ) {
     <footer className='container '>
       <div className='flex flex-row items-center justify-between gap-4 border-t py-5'>
         <div className='flex flex-row items-center gap-2 px-0'>
-          <Link href='/' className='flex items-center space-x-1'>
+          <Link href='/' className='flex items-center'>
             <Icons.logo className='mr-1 size-6' />
           </Link>
           <p className='text-sm leading-loose'>

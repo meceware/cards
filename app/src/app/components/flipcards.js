@@ -62,7 +62,7 @@ const Entry = ( { front, back, hint, flip, outro, onFlip, onCorrect, onWrong, cl
   const isHidden = outro || ! flip;
 
   return (
-    <div className='sm:min-w-p66 min-w-full max-w-full space-y-4'>
+    <div className='sm:min-w-p66 flex min-w-full max-w-full flex-col gap-4'>
       <div className={ cn( 'flex w-full flex-row justify-center gap-2 md:gap-8', className ) } { ...props }>
         <div className={ cn( 'grow-0 self-center transition-all duration-500 ease-in-out', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
           <button className='bg-destructive text-destructive-foreground hover:bg-destructive/70 rounded-xl px-1 py-4 transition-colors duration-500 sm:px-4' onClick={ onWrong } >
@@ -177,7 +177,7 @@ const FlipCards = ( { attr, meta } ) => {
   }, 200 ) );
 
   return (
-    <div className='flex w-full flex-col items-center space-y-4'>
+    <div className='flex w-full flex-col items-center gap-4'>
       <HeaderInner title={ attr.title } slug={ attr.slug } reversable={ attr.reversable } />
       <Progress value={ step - 1 } max={ questions.length } />
       <div className='h-4' ></div>
@@ -199,7 +199,7 @@ const FlipCards = ( { attr, meta } ) => {
             <Icons.reset className='size-4' />Reset
           </button>
           { wrong.size > 0 &&
-            <div className='flex w-full flex-col space-y-4'>
+            <div className='flex w-full flex-col gap-4'>
               <h2 className='text-2xl'>Wrong Answers: <span className='text-red-500'>{ wrong.size }/{ questions.length }</span></h2>
               <Separator />
               { [ ...wrong.values() ].map( ( value ) => (
@@ -208,7 +208,7 @@ const FlipCards = ( { attr, meta } ) => {
             </div>
           }
           { correct.size > 0 &&
-            <div className='flex w-full flex-col space-y-4'>
+            <div className='flex w-full flex-col gap-4'>
               <h2 className='text-2xl'>Correct Answers: <span className='text-green-500'>{ correct.size }/{ questions.length }</span></h2>
               <Separator />
               { [ ...correct.values() ].map( ( value ) => (
