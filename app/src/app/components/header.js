@@ -11,13 +11,13 @@ export default function Header( { github } ) {
       <div className='flex items-center justify-between border-b py-6'>
         <div className='mr-4 flex'>
           <Link href='/' className='flex items-center space-x-1'>
-            <Icons.logo className='size-6 mr-1' />
+            <Icons.logo className='mr-1 size-6' />
             <span className={ cn( 'inline-block font-bold' ) }>Cards</span>
           </Link>
         </div>
         <nav className='flex flex-row items-center space-x-2 md:space-x-4'>
           <Link href={ github } className={ cn( 'flex focus:outline-none' ) } target='_blank' rel='noreferrer noopener'>
-            <Icons.gitHub className={ cn( 'size-5 mr-1 inline-block' ) } />
+            <Icons.gitHub className={ cn( 'mr-1 inline-block size-5' ) } />
           </Link>
           <ModeToggle />
         </nav>

@@ -17,22 +17,22 @@ export function ModeToggle() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className = 'px-0 focus:outline-none focus-visible:outline-none'>
-          <Icons.sun className = 'size-6 mr-1 block dark:hidden' />
-          <Icons.moon className = 'size-6 mr-1 hidden dark:block' />
+          <Icons.sun className = 'mr-1 block size-6 dark:hidden' />
+          <Icons.moon className = 'mr-1 hidden size-6 dark:block' />
           <span className = 'sr-only'>Toggle theme</span>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end'>
         <DropdownMenuItem onClick={ () => setTheme( 'light' ) }>
-          <Icons.sun className = 'size-4 mr-2' />
+          <Icons.sun className = 'mr-2 size-4' />
           <span>Light</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={ () => setTheme( 'dark' ) }>
-          <Icons.moon className = 'size-4 mr-2' />
+          <Icons.moon className = 'mr-2 size-4' />
           <span>Dark</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={ () => setTheme( 'system' ) }>
-          <Icons.laptop className = 'size-4 mr-2' />
+          <Icons.laptop className = 'mr-2 size-4' />
           <span>System</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -29,7 +29,7 @@ const DropdownMenuSubTrigger = forwardRef( ( { className, inset, children, ...pr
     { ...props }
   >
     { children }
-    <ChevronRight className='size-4 ml-auto' />
+    <ChevronRight className='ml-auto size-4' />
   </DropdownMenuPrimitive.SubTrigger>
 ) );
 
@@ -80,7 +80,7 @@ const DropdownMenuCheckboxItem = forwardRef( ( { className, children, checked, .
     checked={checked}
     { ...props }
   >
-    <span className='size-3.5 absolute left-2 flex items-center justify-center'>
+    <span className='absolute left-2 flex size-3.5 items-center justify-center'>
       <DropdownMenuPrimitive.ItemIndicator>
         <Check className='size-4' />
       </DropdownMenuPrimitive.ItemIndicator>
@@ -98,7 +98,7 @@ const DropdownMenuRadioItem = forwardRef( ( { className, children, ...props }, r
     ) }
     { ...props }
   >
-    <span className='size-3.5 absolute left-2 flex items-center justify-center'>
+    <span className='absolute left-2 flex size-3.5 items-center justify-center'>
       <DropdownMenuPrimitive.ItemIndicator>
         <Circle className='size-2 fill-current' />
       </DropdownMenuPrimitive.ItemIndicator>

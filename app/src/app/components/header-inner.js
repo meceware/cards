@@ -4,7 +4,7 @@ import { Icons } from '@/components/icons';
 const HeaderInner = ( { title, slug, reversable = false } ) => {
   return (
     <>
-      <h1 className='line-clamp-1 text-4xl font-semibold'>{ title }</h1>
+      <h1 className='line-clamp-2 text-4xl font-semibold'>{ title }</h1>
       <div className='block space-x-4'>
         <Link href={ '/' } title='Home' className='hover:bg-accent hover:text-accent-foreground inline-flex rounded-md p-2 transition-colors'>
           <Icons.home className='size-5' />
