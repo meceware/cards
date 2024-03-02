@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import range from 'lodash.range';
 import shuffle from 'lodash.shuffle';
 import { useEventListener, useDebounceCallback, useToggle, useStep, useMap } from 'usehooks-ts';
@@ -11,6 +11,52 @@ import * as FlipCard from '@/app/components/flipcard';
 import { TableEntry } from '@/app/components/table-entry';
 import { Separator } from '@/components/ui/separator';
 import { HeaderInner } from '@/app/components/header-inner';
+
+const useSwipe = ( { onSwipeLeft, onSwipeRight } ) => {
+  const touchStart = useRef( { x: 0, y: 0 } );
+  const touchEnd = useRef( { x: 0, y: 0 } );
+
+  // the required distance between touchStart and touchEnd to be detected as a swipe
+  const minSwipeDistance = 50;
+
+  const onTouchStart = ( e ) => {
+    touchEnd.current = { x: 0, y: 0 };
+    touchStart.current.x = e.targetTouches[ 0 ].clientX;
+    touchStart.current.y = e.targetTouches[ 0 ].clientY;
+  };
+
+  const onTouchMove = ( e ) => {
+    touchEnd.current.x = e.targetTouches[ 0 ].clientX;
+    touchEnd.current.y = e.targetTouches[ 0 ].clientY;
+  };
+
+  const onTouchEnd = () => {
+    if ( ! touchStart.current.x || ! touchEnd.current.x || ! touchStart.current.y || ! touchEnd.current.y ) {
+      return;
+    }
+
+    const distanceX = touchStart.current.x - touchEnd.current.x;
+    const distanceY = touchStart.current.y - touchEnd.current.y;
+
+    // Left swipe
+    if ( Math.abs( distanceX ) > distanceY ) {
+      if ( onSwipeLeft && distanceX > minSwipeDistance ) {
+        onSwipeLeft();
+      }
+
+      // Right swipe
+      if ( onSwipeRight && distanceX < -minSwipeDistance ) {
+        onSwipeRight();
+      }
+    }
+  };
+
+  return {
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
+  };
+};
 
 const Entry = ( { front, back, hint, flip, outro, onFlip, onCorrect, onWrong, className, ...props } ) => {
   const isHidden = outro || ! flip;
@@ -24,13 +70,15 @@ const Entry = ( { front, back, hint, flip, outro, onFlip, onCorrect, onWrong, cl
           </button>
         </div>
         <div className='flex grow flex-col items-stretch gap-4'>
-          <FlipCard.Root flip={ flip } onClick={ onFlip } className='min-h-72 w-full cursor-pointer text-xl leading-tight sm:text-2xl md:leading-normal'>
+          <FlipCard.Root flip={ flip } onClick={ onFlip } { ...useSwipe( { onSwipeLeft: onWrong, onSwipeRight: onCorrect } ) } className='min-h-72 w-full cursor-pointer text-xl leading-tight sm:text-2xl md:leading-normal'>
             <FlipCard.Front className='text-card-foreground bg-secondary rounded-xl border-4 border-sky-500 p-6 '>
               <span className={ cn( 'transition-opacity duration-200', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && ! flip } ) }>{ front }</span>
             </FlipCard.Front>
             <FlipCard.Back className='text-card-foreground bg-secondary rounded-xl border-4 border-orange-500 p-6'>
               <span className={ cn( 'transition-opacity duration-200', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && flip } ) }>{ back }</span>
-              <span className={ cn( 'mt-2 hidden rounded-xl border border-lime-500 p-2 text-sm transition-opacity duration-200 md:block', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && flip } ) }>{ hint }</span>
+              { hint && (
+                <span className={ cn( 'mt-2 hidden rounded-xl border border-lime-500 p-2 text-sm transition-opacity duration-200 md:block', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && flip } ) }>{ hint }</span>
+              ) }
             </FlipCard.Back>
           </FlipCard.Root>
         </div>
