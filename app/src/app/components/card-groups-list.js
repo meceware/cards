@@ -16,8 +16,8 @@ const CardGroup = ( { item } ) => {
             <h3 className='line-clamp-2 text-left text-lg font-semibold leading-none tracking-tight sm:line-clamp-1'>{ item.attributes.title }</h3>
           </Link>
           <div className='flex flex-col gap-2 sm:flex-row'>
-            <div className='bg-primary hover:bg-primary/80 text-primary-foreground line-clamp-1 rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold'>{ item.attributes.class }</div>
-            <div className='bg-primary hover:bg-primary/80 text-primary-foreground line-clamp-1 rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold'>{ item.attributes.questions.length } questions</div>
+            <div className='bg-primary hover:bg-primary/80 text-primary-foreground line-clamp-1 w-fit rounded-lg border border-transparent px-2.5 py-0.5 text-xs font-semibold'>{ item.attributes.class }</div>
+            <div className='bg-primary hover:bg-primary/80 text-primary-foreground line-clamp-1 w-fit rounded-lg border border-transparent px-2.5 py-0.5 text-xs font-semibold'>{ item.attributes.questions.length } questions</div>
           </div>
         </div>
         <div className='ml-2 flex flex-col gap-1 border-l pl-2 sm:flex-row'>
