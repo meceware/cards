@@ -203,7 +203,7 @@ const FlipCards = ( { attr, meta } ) => {
               <h2 className='text-2xl'>Wrong Answers: <span className='text-red-500'>{ wrong.size }/{ questions.length }</span></h2>
               <Separator />
               { [ ...wrong.values() ].map( ( value ) => (
-                <TableEntry key={ value.id } question={ value.question } answer={ value.answer } />
+                <TableEntry key={ value.id } question={ value.question } answer={ value.answer } hint={ value.hint } />
               ) ) }
             </div>
           }
@@ -212,7 +212,7 @@ const FlipCards = ( { attr, meta } ) => {
               <h2 className='text-2xl'>Correct Answers: <span className='text-green-500'>{ correct.size }/{ questions.length }</span></h2>
               <Separator />
               { [ ...correct.values() ].map( ( value ) => (
-                <TableEntry key={ value.id } question={ value.question } answer={ value.answer } />
+                <TableEntry key={ value.id } question={ value.question } answer={ value.answer } hint={ value.hint } />
               ) ) }
             </div>
           }

@@ -44,7 +44,7 @@ const QuestionsList = ( { attr, meta } ) => {
       { filteredData.length > 0 ? (
         <>
           { filteredData.map( ( item, id ) => (
-            <TableEntry key={ id } question={ 'item' in item ? item.item.question : item.question } answer={ 'item' in item ? item.item.answer : item.answer } />
+            <TableEntry key={ id } question={ 'item' in item ? item.item.question : item.question } answer={ 'item' in item ? item.item.answer : item.answer } hint={ 'item' in item ? item.item.hint : item.hint } />
           ) ) }
         </>
       ) : (
