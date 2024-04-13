@@ -9,7 +9,7 @@ const TableEntry = ( { question, answer, hint } ) => {
           <Separator orientation='vertical'/>
           <h3 className='w-1/2 whitespace-pre-wrap text-left text-lg font-semibold text-orange-500'>{ answer }</h3>
         </div>
-        { hint &&(
+        { hint && (
           <div className='mt-4 border-t p-2 text-sm'>
             <span className='whitespace-pre-wrap text-center text-sm font-normal leading-tight text-purple-700 dark:text-purple-400'>{ hint }</span>
           </div>
