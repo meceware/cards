@@ -77,7 +77,9 @@ const Entry = ( { front, back, hint, flip, outro, onFlip, onCorrect, onWrong, cl
             <FlipCard.Back className='text-card-foreground bg-secondary rounded-xl border-4 border-orange-500 p-6'>
               <span className={ cn( 'transition-opacity duration-200', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && flip } ) }>{ back }</span>
               { hint && (
-                <span className={ cn( 'mt-2 hidden rounded-xl border border-lime-500 p-2 text-sm transition-opacity duration-200 md:block', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && flip } ) }>{ hint }</span>
+                <span className={ cn( 'w-full mt-4 hidden md:inline-block text-purple-700 dark:text-purple-400 border-t p-2 text-sm text-center font-normal leading-tight whitespace-pre-wrap transition-opacity duration-200', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && flip } ) }>
+                  { hint }
+                </span>
               ) }
             </FlipCard.Back>
           </FlipCard.Root>
@@ -95,7 +97,7 @@ const Entry = ( { front, back, hint, flip, outro, onFlip, onCorrect, onWrong, cl
       </div>
       { hint && (
         <div className='flex justify-center px-4 md:hidden'>
-          <div className={ cn( 'text-card-foreground bg-secondary mx-4 min-w-60 select-none whitespace-pre-wrap rounded-xl border-4 border-lime-500 p-2 text-xs leading-normal shadow-xl transition-all duration-500', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
+          <div className={ cn( 'text-card-foreground bg-secondary mx-4 min-w-60 select-none whitespace-pre-wrap rounded-xl border-4 border-purple-700 p-2 text-xs leading-normal shadow-xl transition-all duration-500', { 'opacity-0 invisible': isHidden, 'opacity-100 visible': ! isHidden } ) }>
             <span className={ cn( 'transition-opacity duration-200', { 'opacity-0': isHidden }, { 'opacity-100': ! outro && ! flip } ) }>{ hint }</span>
           </div>
         </div>
