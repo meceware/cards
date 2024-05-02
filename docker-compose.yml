@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   cards:
-    image: cards:latest
+    image: cards:0.1.1
     container_name: cards
     build:
       context: ./app
@@ -25,7 +25,7 @@ services:
       - 3000:3000
 
   strapi:
-    image: strapi:latest
+    image: strapi:4.24.1
     container_name: strapi
     build:
       context: ./strapi
