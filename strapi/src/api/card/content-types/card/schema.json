@@ -27,7 +27,9 @@
       "type": "enumeration",
       "enum": [
         "English to Finnish",
-        "Finnish to English"
+        "Finnish to English",
+        "Finnish to Turkish",
+        "Turkish to Finnish"
       ],
       "required": true,
       "default": "Finnish to English"
